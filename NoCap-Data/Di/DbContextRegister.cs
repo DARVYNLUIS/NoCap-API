@@ -9,7 +9,7 @@ public static class DbContextRegister
     public static IServiceCollection AddDbContextRegister(this IServiceCollection services)
     {
         services.AddDbContextFactory<NoCapContext>(options =>
-        options.UseSqlServer("Name=SqlConStr"));
+        options.UseNpgsql("Name=SqlConStr"));
         return services;
     }
 }
