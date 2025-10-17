@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>NoCap_Services</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoCap-Abstracions\NoCap-Abstracions.csproj" />
+    <ProjectReference Include="..\NoCap-Data\NoCap-Data.csproj" />
+    <ProjectReference Include="..\NoCap-Domain\NoCap-Domain.csproj" />
+  </ItemGroup>
+
+</Project>

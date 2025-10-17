@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-API", "NoCap-API.csproj", "{801806FE-7C33-4890-9C31-9DD1E0E2B317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-Data", "..\NoCap-Data\NoCap-Data.csproj", "{426FD568-1674-4163-9C57-2C4A4645E797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-Abstracions", "..\NoCap-Abstracions\NoCap-Abstracions.csproj", "{772CD88A-9D42-4AF6-8000-42FA9B6FA654}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-Services", "..\NoCap-Services\NoCap-Services.csproj", "{F8B5924F-1767-4200-910A-206A123F44A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-Domain", "..\NoCap-Domain\NoCap-Domain.csproj", "{C0529377-E9D5-49A3-A52F-C7C3199FB20B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoCap-Test", "..\NoCap-Test\NoCap-Test.csproj", "{92D162E2-90A5-4D2C-8D87-7FF028A94929}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{801806FE-7C33-4890-9C31-9DD1E0E2B317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801806FE-7C33-4890-9C31-9DD1E0E2B317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801806FE-7C33-4890-9C31-9DD1E0E2B317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801806FE-7C33-4890-9C31-9DD1E0E2B317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426FD568-1674-4163-9C57-2C4A4645E797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426FD568-1674-4163-9C57-2C4A4645E797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426FD568-1674-4163-9C57-2C4A4645E797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426FD568-1674-4163-9C57-2C4A4645E797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{772CD88A-9D42-4AF6-8000-42FA9B6FA654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{772CD88A-9D42-4AF6-8000-42FA9B6FA654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{772CD88A-9D42-4AF6-8000-42FA9B6FA654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{772CD88A-9D42-4AF6-8000-42FA9B6FA654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B5924F-1767-4200-910A-206A123F44A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B5924F-1767-4200-910A-206A123F44A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B5924F-1767-4200-910A-206A123F44A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B5924F-1767-4200-910A-206A123F44A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0529377-E9D5-49A3-A52F-C7C3199FB20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0529377-E9D5-49A3-A52F-C7C3199FB20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0529377-E9D5-49A3-A52F-C7C3199FB20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0529377-E9D5-49A3-A52F-C7C3199FB20B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D162E2-90A5-4D2C-8D87-7FF028A94929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D162E2-90A5-4D2C-8D87-7FF028A94929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D162E2-90A5-4D2C-8D87-7FF028A94929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D162E2-90A5-4D2C-8D87-7FF028A94929}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FA8C3D2-1C60-4F4E-8117-607D2DB46C1F}
+	EndGlobalSection
+EndGlobal
