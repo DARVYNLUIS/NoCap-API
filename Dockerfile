@@ -2,28 +2,29 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copiar archivos de proyecto
+# Copiar archivos de proyecto (usa los nombres exactos del sistema)
 COPY NoCap-Abstracions/NoCap-Abstracions.csproj NoCap-Abstracions/
 COPY NoCap-Data/NoCap-Data.csproj NoCap-Data/
 COPY NoCap-Services/NoCap-Services.csproj NoCap-Services/
-COPY NoCap_API/NoCap_API.csproj NoCap_API/
+COPY NoCap-API/NoCap-API.csproj NoCap-API/
 
 # Restaurar dependencias
-RUN dotnet restore NoCap_API/NoCap_API.csproj
+RUN dotnet restore NoCap-API/NoCap-API.csproj
 
-# Copiar el resto del código
+# Copiar todo el código
 COPY . .
 
 # Publicar en Release
-RUN dotnet publish NoCap_API/NoCap_API.csproj -c Release -o /app/out
+RUN dotnet publish NoCap-API/NoCap-API.csproj -c Release -o /app/out
 
 # Etapa de runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Render usa el puerto 10000
+# Puerto que Render usa
 ENV ASPNETCORE_URLS=http://+:10000
 EXPOSE 10000
 
-ENTRYPOINT ["dotnet", "NoCap_API.dll"]
+# Comando para correr la API
+ENTRYPOINT ["dotnet", "NoCap-API.dll"]
