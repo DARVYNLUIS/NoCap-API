@@ -17,9 +17,9 @@ public class ColorServicesTest
         using (var context = factory.CreateDbContext())
         {
             context.Colores.AddRange(
-                new Colores { ColorId = 1, Nombre = "prueba", CodigoHex = "snclasn" },
-                new Colores { ColorId = 2, Nombre = "Prueba-1", CodigoHex ="jnkasnd" },
-                new Colores { ColorId = 3, Nombre = "Prueba-2", CodigoHex ="ajqnds" }
+                new Colores { ColorId = 1, Nombre = "prueba" },
+                new Colores { ColorId = 2, Nombre = "Prueba-1" },
+                new Colores { ColorId = 3, Nombre = "Prueba-2" }
             );
             context.SaveChanges();
         }
