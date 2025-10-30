@@ -1,4 +1,3 @@
-using NoCap_Services.DI;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "API para NoCap_Services"
     });
 });
-builder.Services.RegistarServices();
+builder.Services.RegistarServices(builder.Configuration);
 
 var app = builder.Build();
 
