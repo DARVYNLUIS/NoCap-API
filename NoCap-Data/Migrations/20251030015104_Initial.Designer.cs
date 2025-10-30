@@ -2,18 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NoCap_Data.Context;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace NoCap_Data.Migrations
 {
     [DbContext(typeof(NoCapContext))]
-    [Migration("20251018021951_cambioColor")]
-    partial class cambioColor
+    [Migration("20251030015104_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,45 +21,41 @@ namespace NoCap_Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("NoCap_Data.Data.CarritoDetalle", b =>
                 {
                     b.Property<int>("CarritoDetalleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CarritoDetalleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarritoDetalleId"));
 
                     b.Property<int>("Cantidad")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("CarritoId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ColorId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("PrecioProducto")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<int?>("ProductoId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("TamañoId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Talla")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CarritoDetalleId");
 
                     b.HasIndex("CarritoId");
 
-                    b.HasIndex("ColorId");
-
                     b.HasIndex("ProductoId");
-
-                    b.HasIndex("TamañoId");
 
                     b.ToTable("CarritoDetalles");
                 });
@@ -68,21 +64,21 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("CarritoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CarritoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarritoId"));
 
                     b.Property<int>("EstadoId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("MontoTotal")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("CarritoId");
 
@@ -97,78 +93,37 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("CategoriaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CategoriaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoriaId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
 
                     b.Property<string>("descripcion")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("NoCap_Data.Data.Colores", b =>
-                {
-                    b.Property<int>("ColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ColorId"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("ColorId");
-
-                    b.ToTable("Colores");
-
-                    b.HasData(
-                        new
-                        {
-                            ColorId = 1,
-                            Nombre = "Negro"
-                        },
-                        new
-                        {
-                            ColorId = 2,
-                            Nombre = "Blanco"
-                        },
-                        new
-                        {
-                            ColorId = 3,
-                            Nombre = "Gris"
-                        },
-                        new
-                        {
-                            ColorId = 4,
-                            Nombre = "Azul Marino"
-                        },
-                        new
-                        {
-                            ColorId = 5,
-                            Nombre = "Beige"
-                        });
-                });
-
             modelBuilder.Entity("NoCap_Data.Data.Estados", b =>
                 {
                     b.Property<int>("EstadoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EstadoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstadoId"));
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EstadoId");
 
@@ -212,77 +167,20 @@ namespace NoCap_Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("NoCap_Data.Data.Inventario", b =>
-                {
-                    b.Property<int>("InventarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InventarioId"));
-
-                    b.Property<int>("CantidadProductos")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("FechaAgregado")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("InventarioId");
-
-                    b.ToTable("Inventarios");
-                });
-
-            modelBuilder.Entity("NoCap_Data.Data.InventarioDetalle", b =>
-                {
-                    b.Property<int>("InventarioDetalleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InventarioDetalleId"));
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("EstadoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("InventarioId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TamañoId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("InventarioDetalleId");
-
-                    b.HasIndex("ColorId");
-
-                    b.HasIndex("EstadoId");
-
-                    b.HasIndex("InventarioId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.HasIndex("TamañoId");
-
-                    b.ToTable("InventarioDetalles");
-                });
-
             modelBuilder.Entity("NoCap_Data.Data.Marcas", b =>
                 {
                     b.Property<int>("MarcaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MarcaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MarcaId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MarcaId");
 
@@ -292,11 +190,13 @@ namespace NoCap_Data.Migrations
                         new
                         {
                             MarcaId = 1,
+                            Activo = true,
                             Nombre = "New Era"
                         },
                         new
                         {
                             MarcaId = 2,
+                            Activo = true,
                             Nombre = "Armani"
                         });
                 });
@@ -305,27 +205,27 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("OrdenCompraId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OrdenCompraId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrdenCompraId"));
 
                     b.Property<int>("CarritoId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("EstadoId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaDeCompra")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<float>("Itbis")
                         .HasColumnType("real");
 
                     b.Property<int>("MontoTotaal")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("OrdenCompraId");
 
@@ -342,24 +242,24 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("PagoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PagoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PagoId"));
 
                     b.Property<DateTime>("FechaPago")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("MontoPagado")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<int>("OrdenCompraId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<bool>("Pagado")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("PagoId");
 
@@ -372,35 +272,49 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("ProductoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProductoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductoId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
 
                     b.Property<int>("CategoriaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
+
+                    b.PrimitiveCollection<string>("Colores")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacionProducto")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("MarcaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<double>("PrecioCompraProducto")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<double>("PrecioVentaProducto")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<string>("ProductoDescripcion")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductoImagne")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductoNombre")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Stocks")
+                        .HasColumnType("int");
+
+                    b.PrimitiveCollection<string>("Tamaños")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductoId");
 
@@ -415,13 +329,13 @@ namespace NoCap_Data.Migrations
                 {
                     b.Property<int>("RolId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RolId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolId"));
 
                     b.Property<string>("NombreRol")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RolId");
 
@@ -440,67 +354,28 @@ namespace NoCap_Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("NoCap_Data.Data.Tamaños", b =>
-                {
-                    b.Property<int>("TamañoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TamañoId"));
-
-                    b.Property<string>("nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("TamañoId");
-
-                    b.ToTable("Tamaños");
-
-                    b.HasData(
-                        new
-                        {
-                            TamañoId = 1,
-                            nombre = "XL"
-                        },
-                        new
-                        {
-                            TamañoId = 2,
-                            nombre = "L"
-                        },
-                        new
-                        {
-                            TamañoId = 3,
-                            nombre = "M"
-                        },
-                        new
-                        {
-                            TamañoId = 4,
-                            nombre = "S"
-                        });
-                });
-
             modelBuilder.Entity("NoCap_Data.Data.Usuarios", b =>
                 {
                     b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UsuarioId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"));
 
                     b.Property<string>("Contraseña")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombres")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RolId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("UsuarioId");
 
@@ -517,25 +392,13 @@ namespace NoCap_Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NoCap_Data.Data.Colores", "Colores")
-                        .WithMany()
-                        .HasForeignKey("ColorId");
-
                     b.HasOne("NoCap_Data.Data.Productos", "Productos")
                         .WithMany()
                         .HasForeignKey("ProductoId");
 
-                    b.HasOne("NoCap_Data.Data.Tamaños", "Tamaños")
-                        .WithMany()
-                        .HasForeignKey("TamañoId");
-
                     b.Navigation("Carritos");
 
-                    b.Navigation("Colores");
-
                     b.Navigation("Productos");
-
-                    b.Navigation("Tamaños");
                 });
 
             modelBuilder.Entity("NoCap_Data.Data.Carritos", b =>
@@ -555,49 +418,6 @@ namespace NoCap_Data.Migrations
                     b.Navigation("Estado");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("NoCap_Data.Data.InventarioDetalle", b =>
-                {
-                    b.HasOne("NoCap_Data.Data.Colores", "Colores")
-                        .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NoCap_Data.Data.Estados", "Estados")
-                        .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NoCap_Data.Data.Inventario", "Inventario")
-                        .WithMany("InventarioDetalles")
-                        .HasForeignKey("InventarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NoCap_Data.Data.Productos", "Productos")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NoCap_Data.Data.Tamaños", "Tamaños")
-                        .WithMany()
-                        .HasForeignKey("TamañoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Colores");
-
-                    b.Navigation("Estados");
-
-                    b.Navigation("Inventario");
-
-                    b.Navigation("Productos");
-
-                    b.Navigation("Tamaños");
                 });
 
             modelBuilder.Entity("NoCap_Data.Data.OrdenCompra", b =>
@@ -671,11 +491,6 @@ namespace NoCap_Data.Migrations
             modelBuilder.Entity("NoCap_Data.Data.Carritos", b =>
                 {
                     b.Navigation("CarritoDetalles");
-                });
-
-            modelBuilder.Entity("NoCap_Data.Data.Inventario", b =>
-                {
-                    b.Navigation("InventarioDetalles");
                 });
 
             modelBuilder.Entity("NoCap_Data.Data.Roles", b =>
