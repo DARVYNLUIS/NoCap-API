@@ -1,18 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NoCap_Abstracions;
 using NoCap_Data.Di;
-
-namespace NoCap_Services.DI;
+using NoCap_Services;
 
 public static class ServicesRegistar
 {
-    public static IServiceCollection RegistarServices (this IServiceCollection services)
+    public static IServiceCollection RegistarServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContextRegister();
+        services.AddDbContextRegister(configuration); // <<< Ahora con configuración real
+
         services.AddScoped<IMarcaServices, MarcaServices>();
         services.AddScoped<ICategoriaServices, CategoriaService>();
-        services.AddScoped<ITamañoServices, TamañosServices>();
-        services.AddScoped<IColoresServices, ColoreServices>();
         services.AddScoped<IUsuarioServices, UsuarioServices>();
         services.AddScoped<IProductoServices, ProductoServices>();
         services.AddScoped<ICarritoServices, CarritoServices>();
