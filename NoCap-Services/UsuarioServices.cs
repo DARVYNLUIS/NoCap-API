@@ -34,7 +34,7 @@ public class UsuarioServices(IDbContextFactory<NoCapContext> context) : IUsuario
             Nombres = usuarioDto.Nombres,
             Correo = usuarioDto.Correo,
             Contraseña = usuarioDto.Contraseña,
-            RolId = 2,
+            RolId = 1,
         });
         return await Contexto.SaveChangesAsync() > 0;
     }

@@ -34,8 +34,8 @@ public class CarritoServices(IDbContextFactory<NoCapContext> context) : ICarrito
                 CarritoId = cd.CarritoId,
                 ProductoId = cd.ProductoId,
                 Cantidad = cd.Cantidad,
-                TamañoId = cd.TamañoId,
-                ColorId = cd.ColorId,
+                Talla = cd.Talla,
+                Color = cd.Color,
                 PrecioProducto = cd.PrecioProducto
 
             }).ToList()
@@ -61,8 +61,8 @@ public class CarritoServices(IDbContextFactory<NoCapContext> context) : ICarrito
                 CarritoId = cd.CarritoId,
                 ProductoId = cd.ProductoId,
                 Cantidad = cd.Cantidad,
-                TamañoId = cd.TamañoId,
-                ColorId = cd.ColorId,
+                Talla = cd.Talla,
+                Color = cd.Color,
                 PrecioProducto = cd.PrecioProducto
             }).ToList()
         };
@@ -114,8 +114,8 @@ public class CarritoServices(IDbContextFactory<NoCapContext> context) : ICarrito
                 CarritoId = cd.CarritoId,
                 ProductoId = cd.ProductoId,
                 Cantidad = cd.Cantidad,
-                TamañoId = cd.TamañoId,
-                ColorId = cd.ColorId,
+                Talla = cd.Talla,
+                Color = cd.Color,
                 PrecioProducto = cd.PrecioProducto
 
             }).ToList()

@@ -19,6 +19,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
             PrecioCompraProducto = productosDto.PrecioProductoCompra,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             ProductoDescripcion = productosDto.ProductoDescripcion,
+            Stocks = productosDto.Stocks,
             CategoriaId = productosDto.CategoriaId,
             MarcaId = productosDto.MarcaId,
         };
@@ -34,6 +35,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
         {
             ProductoNombre = productosDto.ProductoNombre,
             ProductoDescripcion = productosDto.ProductoDescripcion,
+            Stocks = productosDto.Stocks,
             PrecioCompraProducto = productosDto.PrecioProductoCompra,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             CategoriaId = productosDto.CategoriaId,
