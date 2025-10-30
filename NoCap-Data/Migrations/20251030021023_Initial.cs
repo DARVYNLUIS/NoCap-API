@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,11 +19,11 @@ namespace NoCap_Data.Migrations
                 name: "Categorias",
                 columns: table => new
                 {
-                    CategoriaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Activo = table.Column<bool>(type: "bit", nullable: false)
+                    CategoriaId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(type: "text", nullable: false),
+                    descripcion = table.Column<string>(type: "text", nullable: false),
+                    Activo = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,9 +34,9 @@ namespace NoCap_Data.Migrations
                 name: "Estados",
                 columns: table => new
                 {
-                    EstadoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    EstadoId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombre = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,10 +47,10 @@ namespace NoCap_Data.Migrations
                 name: "Marcas",
                 columns: table => new
                 {
-                    MarcaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Activo = table.Column<bool>(type: "bit", nullable: false)
+                    MarcaId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombre = table.Column<string>(type: "text", nullable: false),
+                    Activo = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,9 +61,9 @@ namespace NoCap_Data.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    RolId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreRol = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    RolId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NombreRol = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,20 +74,20 @@ namespace NoCap_Data.Migrations
                 name: "Productos",
                 columns: table => new
                 {
-                    ProductoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductoNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductoDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductoImagne = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaCreacionProducto = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Stocks = table.Column<int>(type: "int", nullable: false),
-                    PrecioVentaProducto = table.Column<double>(type: "float", nullable: false),
-                    PrecioCompraProducto = table.Column<double>(type: "float", nullable: false),
-                    Activo = table.Column<bool>(type: "bit", nullable: false),
-                    Colores = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tamaños = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    MarcaId = table.Column<int>(type: "int", nullable: false)
+                    ProductoId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductoNombre = table.Column<string>(type: "text", nullable: false),
+                    ProductoDescripcion = table.Column<string>(type: "text", nullable: false),
+                    ProductoImagne = table.Column<string>(type: "text", nullable: true),
+                    FechaCreacionProducto = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Stocks = table.Column<int>(type: "integer", nullable: false),
+                    PrecioVentaProducto = table.Column<double>(type: "double precision", nullable: false),
+                    PrecioCompraProducto = table.Column<double>(type: "double precision", nullable: false),
+                    Activo = table.Column<bool>(type: "boolean", nullable: false),
+                    Colores = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Tamaños = table.Column<List<string>>(type: "text[]", nullable: false),
+                    CategoriaId = table.Column<int>(type: "integer", nullable: false),
+                    MarcaId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,12 +110,12 @@ namespace NoCap_Data.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombres = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RolId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombres = table.Column<string>(type: "text", nullable: false),
+                    Correo = table.Column<string>(type: "text", nullable: false),
+                    Contraseña = table.Column<string>(type: "text", nullable: false),
+                    RolId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -130,12 +132,12 @@ namespace NoCap_Data.Migrations
                 name: "Carritos",
                 columns: table => new
                 {
-                    CarritoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MontoTotal = table.Column<double>(type: "float", nullable: false),
-                    EstadoId = table.Column<int>(type: "int", nullable: false)
+                    CarritoId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    MontoTotal = table.Column<double>(type: "double precision", nullable: false),
+                    EstadoId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,14 +159,14 @@ namespace NoCap_Data.Migrations
                 name: "CarritoDetalles",
                 columns: table => new
                 {
-                    CarritoDetalleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CarritoId = table.Column<int>(type: "int", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: true),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    PrecioProducto = table.Column<double>(type: "float", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Talla = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CarritoDetalleId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CarritoId = table.Column<int>(type: "integer", nullable: false),
+                    ProductoId = table.Column<int>(type: "integer", nullable: true),
+                    Cantidad = table.Column<int>(type: "integer", nullable: false),
+                    PrecioProducto = table.Column<double>(type: "double precision", nullable: false),
+                    Color = table.Column<string>(type: "text", nullable: true),
+                    Talla = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,14 +188,14 @@ namespace NoCap_Data.Migrations
                 name: "OrdenCompras",
                 columns: table => new
                 {
-                    OrdenCompraId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CarritoId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    MontoTotaal = table.Column<int>(type: "int", nullable: false),
+                    OrdenCompraId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CarritoId = table.Column<int>(type: "integer", nullable: false),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    MontoTotaal = table.Column<int>(type: "integer", nullable: false),
                     Itbis = table.Column<float>(type: "real", nullable: false),
-                    FechaDeCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EstadoId = table.Column<int>(type: "int", nullable: false)
+                    FechaDeCompra = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EstadoId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -222,13 +224,13 @@ namespace NoCap_Data.Migrations
                 name: "Pagos",
                 columns: table => new
                 {
-                    PagoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrdenCompraId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    MontoPagado = table.Column<double>(type: "float", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Pagado = table.Column<bool>(type: "bit", nullable: false)
+                    PagoId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrdenCompraId = table.Column<int>(type: "integer", nullable: false),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    MontoPagado = table.Column<double>(type: "double precision", nullable: false),
+                    FechaPago = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Pagado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
