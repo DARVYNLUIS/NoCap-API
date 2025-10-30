@@ -7,6 +7,6 @@ public class CarritoDetalleDTO
     public int? ProductoId { get; set; }
     public int Cantidad { get; set; }
     public double PrecioProducto { get; set; }
-    public int? ColorId { get; set; }
-    public int? TamañoId { get; set; }
+    public string? Color { get; set; }
+    public string? Talla { get; set; }
 }
