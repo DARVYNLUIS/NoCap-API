@@ -17,3 +17,4 @@ public static class DbContextRegister
         return services;
     }
 }
+//options.UseNpgsql(connectionString));
