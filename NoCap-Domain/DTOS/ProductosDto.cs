@@ -8,8 +8,11 @@ public class ProductosDto
     public string ProductoImagne { get; set; } = string.Empty;
     public DateTime FechaCreacionProducto { get; set; } = DateTime.Now;
     public int Stocks { get; set; }
-    public double PrecioProductoCompra { get; set; }
     public double PrecioProductoVenta { get; set; }
     public int CategoriaId { get; set; }
     public int MarcaId { get; set; }
+    public List<string> Colores { get; set; } = new List<string>();
+    public List<string> Tamaños { get; set; } = new List<string>();
+
+
 }
