@@ -16,7 +16,6 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
         {
             ProductoId = productosDto.ProductoId,
             ProductoNombre = productosDto.ProductoNombre,
-            PrecioCompraProducto = productosDto.PrecioProductoCompra,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             ProductoDescripcion = productosDto.ProductoDescripcion,
             Stocks = productosDto.Stocks,
@@ -36,10 +35,11 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
             ProductoNombre = productosDto.ProductoNombre,
             ProductoDescripcion = productosDto.ProductoDescripcion,
             Stocks = productosDto.Stocks,
-            PrecioCompraProducto = productosDto.PrecioProductoCompra,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             CategoriaId = productosDto.CategoriaId,
             MarcaId = productosDto.MarcaId,
+            Colores = productosDto.Colores,
+            Tamaños = productosDto.Tamaños,
         });
         return await Context.SaveChangesAsync() > 0;
     }
@@ -62,10 +62,12 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
                 ProductoId = p.ProductoId,
                 ProductoNombre = p.ProductoNombre,
                 ProductoDescripcion = p.ProductoDescripcion,
-                PrecioProductoCompra = p.PrecioCompraProducto,
+                Stocks = p.Stocks,
                 PrecioProductoVenta = p.PrecioVentaProducto,
                 CategoriaId = p.CategoriaId,
                 MarcaId = p.MarcaId,
+                Colores = p.Colores,
+                Tamaños = p.Tamaños,
             })
             .FirstOrDefaultAsync() ?? throw new KeyNotFoundException("No se ha encuentra esa categoria"); 
     }
@@ -79,10 +81,12 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
                 ProductoId = p.ProductoId,
                 ProductoNombre = p.ProductoNombre,
                 ProductoDescripcion = p.ProductoDescripcion,
-                PrecioProductoCompra = p.PrecioCompraProducto,
+                Stocks = p.Stocks,
                 PrecioProductoVenta = p.PrecioVentaProducto,
                 CategoriaId = p.CategoriaId,
                 MarcaId = p.MarcaId,
+                Colores = p.Colores,
+                Tamaños = p.Tamaños,
             })
             .Where(criterio)
             .ToListAsync();
