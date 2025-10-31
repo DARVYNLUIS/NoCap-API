@@ -13,7 +13,6 @@ public class Productos
     public DateTime FechaCreacionProducto { get; set; } = DateTime.Now;
     public int Stocks { get; set; }
     public double PrecioVentaProducto { get; set; }
-    public double PrecioCompraProducto { get; set; }
     public bool Activo { get; set; } = true;
     public List<string> Colores { get; set; } = new List<string>();
     public List<string> Tamaños { get; set; } = new List<string>();
