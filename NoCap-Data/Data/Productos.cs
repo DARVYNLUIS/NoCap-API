@@ -10,7 +10,7 @@ public class Productos
     public string ProductoNombre { get; set; }  = string.Empty;
     public string ProductoDescripcion { get; set; } = string.Empty;
     public string? ProductoImagne { get; set; } = string.Empty;
-    public DateTime FechaCreacionProducto { get; set; } = DateTime.Now;
+    public DateTime FechaCreacionProducto { get; set; } = DateTime.UtcNow;
     public int Stocks { get; set; }
     public double PrecioVentaProducto { get; set; }
     public bool Activo { get; set; } = true;
