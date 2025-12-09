@@ -36,25 +36,17 @@ namespace NoCap_API.Controllers
           
         }
 
-        [HttpPost("Crear")]
+        [HttpPost("Guardar")]
         public async Task<ActionResult> CrearProducto(ProductosDto productosDto)
         {
-            if (await productoServices.CrearProducto(productosDto))
+            if (await productoServices.Guardar(productosDto))
             {
                 return Ok(new { mensaje = "Producto creado correctamente" });
             }
             return BadRequest("Error al crear el producto");
         }
 
-        [HttpPut("Editar/{id}")]
-        public async Task<IActionResult> EditarProducto(int id, ProductosDto productosDto)
-        {
-            if (id != productosDto.ProductoId)
-            {
-                return BadRequest("El ID del producto no coincide");
-            }
-            return await productoServices.ActualizarProducto(productosDto) ? NoContent() : NotFound();
-        }
+      
 
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> EliminarProducto(int id)

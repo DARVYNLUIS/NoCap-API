@@ -8,7 +8,26 @@ namespace NoCap_Services;
 
 public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProductoServices
 {
-    public async Task<bool> ActualizarProducto(ProductosDto productosDto)
+
+    private async Task<bool> Existe (int productoId)
+    {
+        using var Context = await context.CreateDbContextAsync();
+        return await Context.Productos.AnyAsync(p => p.ProductoId == productoId);
+    }
+
+    public async Task<bool> Guardar(ProductosDto productosDto)
+    {
+        if (await Existe(productosDto.ProductoId))
+        {
+            return await ActualizarProducto(productosDto);
+        }
+        else
+        {
+            return await CrearProducto(productosDto);
+        }
+    }
+
+    private async Task<bool> ActualizarProducto(ProductosDto productosDto)
     {
         using var Context = context.CreateDbContext();
 
@@ -27,7 +46,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
         return await Context.SaveChangesAsync() > 0;
     }
 
-    public async Task<bool> CrearProducto(ProductosDto productosDto)
+    private async Task<bool> CrearProducto(ProductosDto productosDto)
     {
         using var Context = await context.CreateDbContextAsync();
         await Context.Productos.AddAsync(new Productos
