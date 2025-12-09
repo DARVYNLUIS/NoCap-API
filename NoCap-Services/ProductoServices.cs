@@ -35,6 +35,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
         {
             ProductoId = productosDto.ProductoId,
             ProductoNombre = productosDto.ProductoNombre,
+            ProductoImagne = productosDto.ProductoImagne,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             ProductoDescripcion = productosDto.ProductoDescripcion,
             Stocks = productosDto.Stocks,
@@ -53,6 +54,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
         {
             ProductoNombre = productosDto.ProductoNombre,
             ProductoDescripcion = productosDto.ProductoDescripcion,
+            ProductoImagne = productosDto.ProductoImagne,
             Stocks = productosDto.Stocks,
             PrecioVentaProducto = productosDto.PrecioProductoVenta,
             FechaCreacionProducto = productosDto.FechaCreacionProducto,
@@ -81,6 +83,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
             {
                 ProductoId = p.ProductoId,
                 ProductoNombre = p.ProductoNombre,
+                ProductoImagne = p.ProductoImagne,
                 ProductoDescripcion = p.ProductoDescripcion,
                 Stocks = p.Stocks,
                 PrecioProductoVenta = p.PrecioVentaProducto,
@@ -103,6 +106,7 @@ public class ProductoServices(IDbContextFactory<NoCapContext> context) : IProduc
                 ProductoId = p.ProductoId,
                 ProductoNombre = p.ProductoNombre,
                 ProductoDescripcion = p.ProductoDescripcion,
+                ProductoImagne = p.ProductoImagne,
                 Stocks = p.Stocks,
                 PrecioProductoVenta = p.PrecioVentaProducto,
                 FechaCreacionProducto = p.FechaCreacionProducto,
