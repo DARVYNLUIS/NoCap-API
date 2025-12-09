@@ -10,7 +10,7 @@ public class Carritos
 
     public int UsuarioId { get; set; }
 
-    public DateTime FechaCreacion { get; set; }
+    public string FechaCreacion { get; set; }
 
     public double MontoTotal { get; set; }
 

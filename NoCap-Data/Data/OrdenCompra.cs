@@ -14,7 +14,7 @@ public class OrdenCompra
 
     public float Itbis {get; set; } = 0.18f;
 
-    public DateTime FechaDeCompra { get; set; } = DateTime.Now;
+    public string FechaDeCompra { get; set; }
 
     public int EstadoId { get; set; }
 

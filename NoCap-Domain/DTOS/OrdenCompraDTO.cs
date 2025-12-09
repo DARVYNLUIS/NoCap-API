@@ -7,6 +7,6 @@ public class OrdenCompraDTO
     public int UsuarioId { get; set; }
     public int MontoTotaal { get; set; }
     public float Itbis { get; set; }
-    public DateTime FechaDeCompra { get; set; }
+    public string FechaDeCompra { get; set; }
     public int EstadoId { get; set; }
 }
