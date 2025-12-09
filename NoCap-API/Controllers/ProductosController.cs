@@ -37,7 +37,7 @@ namespace NoCap_API.Controllers
         }
 
         [HttpPost("Guardar")]
-        public async Task<ActionResult> CrearProducto(ProductosDto productosDto)
+        public async Task<ActionResult> CrearProducto([FromBody]ProductosDto productosDto)
         {
             if (await productoServices.Guardar(productosDto))
             {
