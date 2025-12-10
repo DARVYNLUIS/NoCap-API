@@ -19,6 +19,7 @@ public class UsuarioServices(IDbContextFactory<NoCapContext> context) : IUsuario
 
         usuario.Nombres = usuarioDto.Nombres;
         usuario.Correo = usuarioDto.Correo;
+        usuario.RolId = usuarioDto.RolId;
         Contexto.Usuarios.Update(usuario);
 
         return await Contexto.SaveChangesAsync() > 0;
